@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGIEE – Sistema de Gestión de Integridad de Equipos Estáticos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <span class="logo-icon">⚙</span>
+        <div class="logo-text">
+          <strong>SGIEE</strong>
+          <small>Equipos Estáticos</small>
+        </div>
+      </div>
+      <button class="sidebar-toggle" id="sidebarToggle" title="Colapsar">‹</button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <span class="nav-group-label">Principal</span>
+        <a href="#" class="nav-item active" data-module="dashboard">
+          <span class="nav-icon">◈</span><span class="nav-label">Dashboard</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <span class="nav-group-label">Base de Datos</span>
+        <a href="#" class="nav-item" data-module="equipos">
+          <span class="nav-icon">🗄</span><span class="nav-label">Equipos</span>
+        </a>
+        <a href="#" class="nav-item" data-module="cml">
+          <span class="nav-icon">📍</span><span class="nav-label">CML / TML</span>
+        </a>
+        <a href="#" class="nav-item" data-module="historial">
+          <span class="nav-icon">📋</span><span class="nav-label">Historial</span>
+        </a>
+        <a href="#" class="nav-item" data-module="isometricos">
+          <span class="nav-icon">📐</span><span class="nav-label">Isométricos</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <span class="nav-group-label">Ingeniería</span>
+        <a href="#" class="nav-item" data-module="espesores">
+          <span class="nav-icon">🔧</span><span class="nav-label">Cálculo Espesores</span>
+        </a>
+        <a href="#" class="nav-item" data-module="rbi">
+          <span class="nav-icon">⚠</span><span class="nav-label">RBI</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <span class="nav-group-label">Planificación</span>
+        <a href="#" class="nav-item" data-module="planificacion">
+          <span class="nav-icon">📅</span><span class="nav-label">Programación</span>
+        </a>
+        <a href="#" class="nav-item" data-module="reportes">
+          <span class="nav-icon">📊</span><span class="nav-label">Reportes</span>
+        </a>
+        <a href="#" class="nav-item" data-module="validacion">
+          <span class="nav-icon">✔</span><span class="nav-label">Validación y Alcance</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span>v2.0.0 · ASME / API 581</span>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content" id="mainContent">
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="btn-icon" id="mobileMenuToggle">☰</button>
+        <h1 class="page-title" id="pageTitle">Dashboard</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-actions">
+          <button class="btn btn-sm btn-secondary" id="exportProjectBtn" title="Guardar proyecto completo (.json)">💾 Guardar Proyecto</button>
+          <button class="btn btn-sm btn-secondary" id="importProjectBtn" title="Recuperar proyecto desde archivo (.json)">📂 Cargar Proyecto</button>
+          <button class="btn btn-sm btn-ghost" id="resetDemoBtn" title="Restablecer caso demostrativo">🔄 Demo</button>
+          <input type="file" id="importProjectInput" accept="application/json,.json" style="display:none" />
+          <button class="btn btn-sm btn-ghost" id="helpBtn" title="Ayuda">?</button>
+          <div class="user-badge">
+            <span class="user-avatar">IG</span>
+            <span class="user-name">Ing. Inspector</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MODULE VIEWS -->
+    <div class="content-area" id="contentArea">
+      <!-- Dashboard -->
+      <section class="module-view active" id="mod-dashboard"></section>
+      <!-- Equipos -->
+      <section class="module-view" id="mod-equipos"></section>
+      <!-- CML / TML -->
+      <section class="module-view" id="mod-cml"></section>
+      <!-- Historial -->
+      <section class="module-view" id="mod-historial"></section>
+      <!-- Isométricos -->
+      <section class="module-view" id="mod-isometricos"></section>
+      <!-- Espesores -->
+      <section class="module-view" id="mod-espesores"></section>
+      <!-- RBI -->
+      <section class="module-view" id="mod-rbi"></section>
+      <!-- Planificación -->
+      <section class="module-view" id="mod-planificacion"></section>
+      <!-- Reportes -->
+      <section class="module-view" id="mod-reportes"></section>
+      <!-- Validación y Alcance -->
+      <section class="module-view" id="mod-validacion"></section>
+    </div>
+  </main>
+
+  <!-- MODAL OVERLAY -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal-container" id="modalContainer"></div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- SCRIPTS -->
+  <script src="js/db.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/thicknessCalc.js"></script>
+  <script src="js/modules/dashboard.js"></script>
+  <script src="js/modules/equipos.js"></script>
+  <script src="js/modules/cml.js"></script>
+  <script src="js/modules/historial.js"></script>
+  <script src="js/modules/isometricos.js"></script>
+  <script src="js/modules/espesores.js"></script>
+  <script src="js/modules/rbi.js"></script>
+  <script src="js/modules/planificacion.js"></script>
+  <script src="js/modules/reportes.js"></script>
+  <script src="js/modules/validacion.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
